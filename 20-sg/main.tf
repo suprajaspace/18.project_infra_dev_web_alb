@@ -239,9 +239,6 @@ resource "aws_security_group_rule" "vpn_public_1194" {
   security_group_id = module.vpn_sg.id
 }
 
-
-
-
 resource "aws_security_group_rule" "app_alb_vpn" {
   type                     = "ingress"
   from_port                = 80

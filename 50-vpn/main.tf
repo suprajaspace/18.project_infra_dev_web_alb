@@ -14,7 +14,6 @@ module "vpn" {
   subnet_id              = local.public_subnet_id
 
 
-
   tags = merge(
     var.common_tags,
     var.vpn_tags,

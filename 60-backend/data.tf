@@ -16,7 +16,6 @@ data "aws_ssm_parameter" "app_alb_listener_arn" {
 
 }
 
-
 data "aws_ami" "devops" {
 
   most_recent = true
