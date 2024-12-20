@@ -118,17 +118,17 @@ resource "aws_autoscaling_group" "frontend" {
   health_check_grace_period = 60
   health_check_type         = "ELB"
   desired_capacity          = 2
-  target_group_arns = [aws_lb_target_group.frontend.arn]
- # force_delete              = true
-  
+  target_group_arns         = [aws_lb_target_group.frontend.arn]
+  # force_delete              = true
+
   launch_template {
-    id = aws_launch_template.frontend.id
+    id      = aws_launch_template.frontend.id
     version = "$Latest"
   }
-  
-  vpc_zone_identifier       = [local.public_subnet_id]
-  
- instance_refresh {
+
+  vpc_zone_identifier = [local.public_subnet_id]
+
+  instance_refresh {
     strategy = "Rolling"
     preferences {
       min_healthy_percentage = 50
@@ -156,20 +156,20 @@ resource "aws_autoscaling_group" "frontend" {
 
 resource "aws_autoscaling_policy" "frontend" {
   name                   = local.resource_name
-  policy_type = "TargetTrackingScaling"
+  policy_type            = "TargetTrackingScaling"
   autoscaling_group_name = aws_autoscaling_group.frontend.name
 
   target_tracking_configuration {
-      predefined_metric_specification {
-        predefined_metric_type = "ASGAverageCPUUtilization"
-      }
+    predefined_metric_specification {
+      predefined_metric_type = "ASGAverageCPUUtilization"
+    }
     target_value = 70.0
   }
 }
 
 resource "aws_lb_listener_rule" "frontend" {
   listener_arn = local.web_alb_listener_arn
-  priority     = 100  # low proirity will be evaluted first
+  priority     = 100 # low proirity will be evaluted first
 
   action {
     type             = "forward"
@@ -177,9 +177,9 @@ resource "aws_lb_listener_rule" "frontend" {
   }
 
   condition {
-   host_header {
-    values = ["expense-${var.environment}.${var.zone_name}"]
-   }
+    host_header {
+      values = ["expense-${var.environment}.${var.zone_name}"]
+    }
   }
 }
 

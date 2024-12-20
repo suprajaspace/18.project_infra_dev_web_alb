@@ -39,7 +39,7 @@ resource "aws_lb_listener" "https" {
   certificate_arn   = local.https_certificate_arn
 
   default_action {
-    type             = "fixed-response"
+    type = "fixed-response"
 
     fixed_response {
       content_type = "text/plain"
