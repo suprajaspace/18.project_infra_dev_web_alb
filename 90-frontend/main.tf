@@ -148,7 +148,7 @@ resource "aws_autoscaling_group" "frontend" {
 
   tag {
     key                 = "Project"
-    value               = "Expense"
+    value               = "target"
     propagate_at_launch = false
   }
 }
@@ -178,7 +178,7 @@ resource "aws_lb_listener_rule" "frontend" {
 
   condition {
     host_header {
-      values = ["expense-${var.environment}.${var.zone_name}"]
+      values = ["target-${var.environment}.${var.zone_name}"]
     }
   }
 }

@@ -148,7 +148,7 @@ resource "aws_autoscaling_group" "backend" {
 
   tag {
     key                 = "Project"
-    value               = "Expense"
+    value               = "target"
     propagate_at_launch = false
   }
 }

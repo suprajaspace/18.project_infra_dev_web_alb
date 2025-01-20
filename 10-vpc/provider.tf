@@ -8,7 +8,7 @@ terraform {
 
   backend "s3" {
     bucket         = "supra-remote-state"
-    key            = "expense-vpc-dev"
+    key            = "target-vpc-dev"
     region         = "us-east-1"
     dynamodb_table = "supra-locking"
   }

@@ -57,7 +57,7 @@ module "records" {
 
   records = [
     {
-      name = "expense-${var.environment}"
+      name = "target-${var.environment}"
       type = "A"
       alias = {
         name    = module.web_alb.dns_name
